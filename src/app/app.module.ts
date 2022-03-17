@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MaterialModule} from './shared/material-module';
 import { FormsModule } from '@angular/forms';
+import { GetQuoteFormComponentComponent } from './views/get-quote-form-component/get-quote-form-component.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GetQuoteFormComponentComponent
   ],
   imports: [
     BrowserModule,
