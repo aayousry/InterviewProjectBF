@@ -13,6 +13,7 @@ import {GetQuoteService} from 'src/app/services/get-quote.service';
 export class GetQuoteFormComponentComponent implements OnInit {
 
   hostCountrySelectedBool: boolean  = false;
+  theHtmlString = "";
 
   getQuoteForm = new FormGroup({
     hostCountry: new FormControl('', Validators.required),
@@ -42,7 +43,6 @@ export class GetQuoteFormComponentComponent implements OnInit {
   ngOnInit(): void {
     this.getHostCountry();
     this.getDestinationCountry();
-//     this.getQuote();
   }
 
   getAllowedCurrencies(countryValue: string){
@@ -69,12 +69,14 @@ export class GetQuoteFormComponentComponent implements OnInit {
     });
   }
 
-  getQuote(){
-    this.getQuoteService.getQuote().subscribe(quoteResult => {
+  getQuote(params){
+    this.getQuoteService.getQuote(params).subscribe(quoteResult => {
         this.resultQuote = quoteResult;
+        this.theHtmlString = JSON.stringify(this.resultQuote);
         console.log("!!!! Here:   " + JSON.stringify(this.resultQuote));
     }, error => {
-      console.log("ERORRRRRR" + JSON.stringify(error));
+      this.theHtmlString = JSON.stringify(error.error.error);
+      console.log("ERORRRRRR" + JSON.stringify(error.error.error));
     });
   }
 
@@ -90,7 +92,39 @@ export class GetQuoteFormComponentComponent implements OnInit {
   }
 
   submit(){
+  let params;
+  if(this.getQuoteForm.controls['hostState'].value == ''){
+    params = {
+       "product_id": 8,
+       "age": this.getQuoteForm.controls['age'].value,
+       "currency_id": this.getQuoteForm.controls['currency'].value,
+       "destination_country_ids": this.getQuoteForm.controls['destinationCountry'].value.toString(),
+       "host_country_id": this.getQuoteForm.controls['hostCountry'].value,
+       "country_state": "",
+       "start_date": this.getQuoteForm.controls['startDate'].value,
+       "end_date": this.getQuoteForm.controls['endDate'].value,
+       "trip_cost": this.getQuoteForm.controls['totalCost'].value,
+       "deposit_date": this.getQuoteForm.controls['depositDate'].value,
+       "winter_sport_extension": this.getQuoteForm.controls['winterSport'].value
+    }
+  }else{
+    params = {
+       "product_id": 8,
+       "age": this.getQuoteForm.controls['age'].value,
+       "currency_id": this.getQuoteForm.controls['currency'].value,
+       "destination_country_ids": this.getQuoteForm.controls['destinationCountry'].value.toString(),
+       "host_country_id": this.getQuoteForm.controls['hostCountry'].value,
+       "country_state": this.getQuoteForm.controls['hostState'].value,
+       "start_date": this.getQuoteForm.controls['startDate'].value,
+       "end_date": this.getQuoteForm.controls['endDate'].value,
+       "trip_cost": this.getQuoteForm.controls['totalCost'].value,
+       "deposit_date": this.getQuoteForm.controls['depositDate'].value,
+       "winter_sport_extension": this.getQuoteForm.controls['winterSport'].value
+    }
+  }
 
+    console.log(params);
+    this.getQuote(params);
   }
 
 

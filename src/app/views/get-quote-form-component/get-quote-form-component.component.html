@@ -23,7 +23,7 @@
 
         <div class="details-column col-lg-4 col-12 my-3">
           <label for="destination-country">Destination Country*: </label><br>
-          <select id="destination-country" class="select-style" type="text" formControlName="destinationCountry">
+          <select id="destination-country" class="select-style" type="text" formControlName="destinationCountry" multiple>
             <option *ngFor="let host of resultDestinationCountries" [value]="host.country_id">{{host.name}}</option>
           </select><br>
           <label *ngIf="getQuoteForm.controls['destinationCountry'].invalid && getQuoteForm.controls['destinationCountry'].touched" class="error-color"> Required </label>
@@ -93,8 +93,8 @@
         </div>
         <div class="details-column col-lg-4 col-12 my-3"></div>
         <div class="details-column col-lg-4 col-12 my-3">
-          <button class="" style="margin: auto; color: white; background-color:#1976d2; width:50%; border: white;" id="submitButton"
-                  (click)='submit()' [disabled]="getQuoteForm.valid">
+          <button id="submitButton"
+                  (click)='submit()' [disabled]="getQuoteForm.invalid">
             Submit
           </button>
         </div>
@@ -102,7 +102,7 @@
 
     </form>
 
-    <div id="result"></div>
+    <div id="result" [innerHTML]="theHtmlString"></div>
 
   </div>
 </div>

@@ -29,8 +29,8 @@ export class GetQuoteService {
   constructor(private http: HttpClient) {
   }
 
-  getQuote(){
-    return this.http.post(`${this.baseUrl}`, this.params, { 'headers': this.headers });
+  getQuote(params){
+    return this.http.post(`${this.baseUrl}`, params, { 'headers': this.headers });
   }
 
 }
