@@ -18,9 +18,9 @@ export class GetQuoteFormComponentComponent implements OnInit {
     hostCountry: new FormControl('', Validators.required),
     hostState: new FormControl({value:'', disabled: !this.hostCountrySelectedBool}),
     destinationCountry: new FormControl('', Validators.required),
-    age: new FormControl('', Validators.required),
+    age: new FormControl('', [Validators.required, Validators.pattern('^[1-9]{1,2}(,[1-9]{1,2})*$')]),
     currency: new FormControl({value:'', disabled: !this.hostCountrySelectedBool}, Validators.required),
-    totalCost: new FormControl('', Validators.required),
+    totalCost: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+[.]?[0-9]*$')]),
     startDate: new FormControl('', Validators.required),
     endDate: new FormControl('', Validators.required),
     depositDate: new FormControl('', Validators.required),
@@ -87,6 +87,10 @@ export class GetQuoteFormComponentComponent implements OnInit {
     const ctrl2 = this.getQuoteForm!.get('currency')!;
     ctrl.enable();
     ctrl2.enable();
+  }
+
+  submit(){
+
   }
 
 

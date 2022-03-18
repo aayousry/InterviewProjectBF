@@ -10,70 +10,99 @@
           <label for="host-country">Host Country*: </label><br>
           <select id="host-country" class="select-style" type="text" formControlName="hostCountry" (change)="hostCountrySelected()">
             <option *ngFor="let host of resultHostCountries" [value]="host.country.id">{{host.name}}</option>
-          </select>
+          </select><br>
+          <label *ngIf="getQuoteForm.controls['hostCountry'].invalid && getQuoteForm.controls['hostCountry'].touched" class="error-color"> Required </label>
         </div>
 
         <div class="details-column col-lg-4 col-12 my-3" *ngFor="let host of resultHostCountries">
           <label for="host-state">Host State: </label><br>
           <select id="host-state" class="select-style" type="text" formControlName="hostState">
               <option *ngFor="let state of host.country.country_states" [value]="state.code">{{state.name}}</option>
-          </select>
+          </select><br>
         </div>
 
         <div class="details-column col-lg-4 col-12 my-3">
           <label for="destination-country">Destination Country*: </label><br>
           <select id="destination-country" class="select-style" type="text" formControlName="destinationCountry">
             <option *ngFor="let host of resultDestinationCountries" [value]="host.country_id">{{host.name}}</option>
-          </select>
+          </select><br>
+          <label *ngIf="getQuoteForm.controls['destinationCountry'].invalid && getQuoteForm.controls['destinationCountry'].touched" class="error-color"> Required </label>
         </div>
       </div>
 
       <div class="row details-row">
         <div class="details-column col-lg-4 col-12 my-3">
           <label for="age">Ages travelling*: </label><br>
-          <input id="age" type="text" formControlName="age">
+          <input id="age" class="input-style" type="text" formControlName="age">
+          <label *ngIf="getQuoteForm.controls['age'].invalid && getQuoteForm.controls['age'].touched" class="error-color"> Must be one or more ages separated by a comma </label>
         </div>
 
         <div class="details-column col-lg-4 col-12 my-3">
           <label for="currency">Currency*: </label><br>
           <select id="currency" class="select-style" type="text" formControlName="currency" >
             <option *ngFor="let curr of resultCurrencies" [value]="curr.iso_code">{{curr.name}}</option>
-          </select>
+          </select><br>
+          <label *ngIf="getQuoteForm.controls['currency'].invalid && getQuoteForm.controls['currency'].touched" class="error-color"> Required </label>
         </div>
 
         <div class="details-column col-lg-4 col-12 my-3">
           <label for="total-cost">Total Cost*: </label><br>
-          <input id="total-cost" type="text" formControlName="totalCost">
+          <input id="total-cost" class="input-style" type="text" formControlName="totalCost">
+          <label *ngIf="getQuoteForm.controls['totalCost'].invalid && getQuoteForm.controls['totalCost'].touched" class="error-color"> Only numbers or a . are allowed </label>
         </div>
       </div>
 
       <div class="row details-row">
         <div class="details-column col-lg-4 col-12 my-3">
           <label for="start-date">Start Date*: </label><br>
-          <input id="start-date" type="text" formControlName="startDate">
+          <input id="start-date" class="date-style" formControlName="startDate" type="date"/>
         </div>
 
         <div class="details-column col-lg-4 col-12 my-3">
           <label for="end-date">End Date*: </label><br>
-          <input id="end-date" type="text" formControlName="endDate">
+          <input id="end-date" class="date-style" formControlName="endDate" type="date"/>
         </div>
 
         <div class="details-column col-lg-4 col-12 my-3">
           <label for="deposit-date">Deposit Date*: </label><br>
-          <input id="deposit-date" type="text" formControlName="depositDate">
+          <input id="deposit-date" class="date-style" formControlName="depositDate" type="date"/>
         </div>
       </div>
 
       <div class="row details-row">
-        <label for="winter-sport">Winter Sport Extension*: </label><br>
-        <input id="winter-sport" type="text" formControlName="winterSport">
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label>Winter Sport Extension*: </label>
+        </div>
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label>
+            <input type="radio" value="true" formControlName="winterSport">
+            <span>True</span>
+          </label>
+        </div>
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label>
+            <input type="radio" value="false" formControlName="winterSport">
+            <span>False</span>
+          </label>
+        </div>
       </div>
 
-    <!--  <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">-->
-    <!--    <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>-->
-    <!--  </select>-->
-
+      <div class="row details-row">
+        <div class="details-column col-lg-4 col-12 my-3">
+          Any field with an * is required
+        </div>
+        <div class="details-column col-lg-4 col-12 my-3"></div>
+        <div class="details-column col-lg-4 col-12 my-3">
+          <button class="" style="margin: auto; color: white; background-color:#1976d2; width:50%; border: white;" id="submitButton"
+                  (click)='submit()' [disabled]="getQuoteForm.valid">
+            Submit
+          </button>
+        </div>
+      </div>
 
     </form>
+
+    <div id="result"></div>
+
   </div>
 </div>
