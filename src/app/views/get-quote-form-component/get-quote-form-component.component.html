@@ -1,1 +1,75 @@
-<p>get-quote-form-component works!</p>
+<!--<p>get-quote-form-component works!</p>-->
+<div class="accordian my-4">
+  <div class="accordianHeaderContainer">
+    <div class="accordianHeaderTitle d-flex justify-content-center"><h3>Get a Quote</h3></div>
+  </div>
+  <div class="accordianContentContainer">
+    <form [formGroup]="getQuoteForm">
+
+      <div class="row details-row">
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label for="host-country">Host Country: </label><br>
+          <select id="host-country" type="text" formControlName="hostCountry" style="width:75%; height:47%">
+            <option>a</option>
+            <option>abc</option>
+          </select>
+        </div>
+
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label for="host-state">Host State: </label><br>
+          <input id="host-state" type="text" formControlName="hostState" style="width:75%">
+        </div>
+
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label for="destination-country">Destination Country: </label><br>
+          <input id="destination-country" type="text" formControlName="destinationCountry">
+        </div>
+      </div>
+
+      <div class="row details-row">
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label for="age">Ages travelling: </label><br>
+          <input id="age" type="text" formControlName="age">
+        </div>
+
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label for="currency">Currency: </label><br>
+          <input id="currency" type="text" formControlName="currency">
+        </div>
+
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label for="total-cost">Total Cost: </label><br>
+          <input id="total-cost" type="text" formControlName="totalCost">
+        </div>
+      </div>
+
+      <div class="row details-row">
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label for="start-date">Start Date: </label><br>
+          <input id="start-date" type="text" formControlName="startDate">
+        </div>
+
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label for="end-date">End Date: </label><br>
+          <input id="end-date" type="text" formControlName="endDate">
+        </div>
+
+        <div class="details-column col-lg-4 col-12 my-3">
+          <label for="deposit-date">Deposit Date: </label><br>
+          <input id="deposit-date" type="text" formControlName="depositDate">
+        </div>
+      </div>
+
+      <div class="row details-row">
+        <label for="winter-sport">Winter Sport Extension: </label><br>
+        <input id="winter-sport" type="text" formControlName="winterSport">
+      </div>
+
+    <!--  <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">-->
+    <!--    <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>-->
+    <!--  </select>-->
+
+
+    </form>
+  </div>
+</div>

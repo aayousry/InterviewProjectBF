@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import {MaterialModule} from './shared/material-module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { GetQuoteFormComponentComponent } from './views/get-quote-form-component/get-quote-form-component.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { GetQuoteFormComponentComponent } from './views/get-quote-form-component
     HttpClientModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
